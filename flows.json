@@ -1,54 +1,49 @@
 [
     {
-        "id": "6d392d8272264a12",
+        "id": "e5ac4d12bc45e544",
         "type": "tab",
-        "label": "Flow 2",
+        "label": "Flow 4",
         "disabled": false,
         "info": "",
         "env": []
     },
     {
-        "id": "54d74a7f2166a35a",
-        "type": "change",
-        "z": "6d392d8272264a12",
-        "name": "",
-        "rules": [
-            {
-                "t": "change",
-                "p": "payload",
-                "pt": "msg",
-                "from": "^r",
-                "fromt": "re",
-                "to": "mensaje",
-                "tot": "str"
-            },
-            {
-                "t": "change",
-                "p": "payload",
-                "pt": "msg",
-                "from": "r$",
-                "fromt": "str",
-                "to": "",
-                "tot": "str"
-            }
-        ],
-        "action": "",
-        "property": "",
-        "from": "",
-        "to": "",
-        "reg": false,
-        "x": 420,
-        "y": 320,
+        "id": "642c82d411ed39f3",
+        "type": "mysql",
+        "z": "e5ac4d12bc45e544",
+        "mydb": "2f9759683fc7db12",
+        "name": "test",
+        "x": 510,
+        "y": 220,
         "wires": [
             [
-                "2fad2933b2f24eb8"
+                "24847e92cb883b39"
             ]
         ]
     },
     {
-        "id": "58b306c32aef3126",
+        "id": "80bdcd6f3f44a55f",
+        "type": "function",
+        "z": "e5ac4d12bc45e544",
+        "name": "",
+        "func": "msg.topic=\"SELECT * FROM clientes\";\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 360,
+        "y": 220,
+        "wires": [
+            [
+                "642c82d411ed39f3"
+            ]
+        ]
+    },
+    {
+        "id": "9ff6d69b24b5fc59",
         "type": "inject",
-        "z": "6d392d8272264a12",
+        "z": "e5ac4d12bc45e544",
         "name": "",
         "props": [
             {
@@ -57,11 +52,6 @@
             {
                 "p": "topic",
                 "vt": "str"
-            },
-            {
-                "p": "one",
-                "v": "rrrr",
-                "vt": "str"
             }
         ],
         "repeat": "",
@@ -69,65 +59,21 @@
         "once": false,
         "onceDelay": 0.1,
         "topic": "",
-        "payload": "r Nuevo",
+        "payload": "ejecutar",
         "payloadType": "str",
-        "x": 110,
-        "y": 320,
+        "x": 170,
+        "y": 220,
         "wires": [
             [
-                "54d74a7f2166a35a",
-                "6af1fcad5668e403",
-                "e8a9e240407b72ea"
+                "80bdcd6f3f44a55f"
             ]
         ]
     },
     {
-        "id": "2fad2933b2f24eb8",
+        "id": "24847e92cb883b39",
         "type": "debug",
-        "z": "6d392d8272264a12",
-        "name": "Menssage",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "payload",
-        "targetType": "msg",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 710,
-        "y": 320,
-        "wires": []
-    },
-    {
-        "id": "6af1fcad5668e403",
-        "type": "switch",
-        "z": "6d392d8272264a12",
+        "z": "e5ac4d12bc45e544",
         "name": "",
-        "property": "one",
-        "propertyType": "msg",
-        "rules": [
-            {
-                "t": "eq",
-                "v": "rrrru",
-                "vt": "str"
-            }
-        ],
-        "checkall": "true",
-        "repair": false,
-        "outputs": 1,
-        "x": 430,
-        "y": 160,
-        "wires": [
-            [
-                "d182026b9850746e"
-            ]
-        ]
-    },
-    {
-        "id": "d182026b9850746e",
-        "type": "debug",
-        "z": "6d392d8272264a12",
-        "name": "MenssageSwitch",
         "active": true,
         "tosidebar": true,
         "console": false,
@@ -137,43 +83,17 @@
         "statusVal": "",
         "statusType": "auto",
         "x": 690,
-        "y": 160,
+        "y": 220,
         "wires": []
     },
     {
-        "id": "e8a9e240407b72ea",
-        "type": "function",
-        "z": "6d392d8272264a12",
+        "id": "2f9759683fc7db12",
+        "type": "MySQLdatabase",
         "name": "",
-        "func": "var varAux=msg.payload\nmsg.payload=varAux+\"1\"\nreturn msg;",
-        "outputs": 1,
-        "noerr": 0,
-        "initialize": "",
-        "finalize": "",
-        "libs": [],
-        "x": 440,
-        "y": 80,
-        "wires": [
-            [
-                "bcf4232e66313f2d"
-            ]
-        ]
-    },
-    {
-        "id": "bcf4232e66313f2d",
-        "type": "debug",
-        "z": "6d392d8272264a12",
-        "name": "MenssageFunction",
-        "active": true,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "payload",
-        "targetType": "msg",
-        "statusVal": "",
-        "statusType": "auto",
-        "x": 670,
-        "y": 80,
-        "wires": []
+        "host": "basjmebuqyrzqnvq2zpr-mysql.services.clever-cloud.com",
+        "port": "3306",
+        "db": "basjmebuqyrzqnvq2zpr",
+        "tz": "",
+        "charset": "UTF8"
     }
 ]
